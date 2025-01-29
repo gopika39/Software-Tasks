@@ -1,0 +1,57 @@
+def fahrenheit_to_celsius(f):
+    return (f - 32) * 5 / 9
+
+def fahrenheit_to_kelvin(f):
+    return (f - 32) * 5 / 9 + 273.15
+
+def celsius_to_fahrenheit(c):
+    return (c * 9 / 5) + 32
+
+def celsius_to_kelvin(c):
+    return c + 273.15
+
+def kelvin_to_celsius(k):
+    return k - 273.15
+
+def kelvin_to_fahrenheit(k):
+    return (k - 273.15) * 9 / 5 + 32
+
+def main():
+    print("Temperature Converter")
+    temperature = float(input("Enter the temperature: "))
+    print("Select the scale of the given temperature:")
+    print("1. Fahrenheit")
+    print("2. Celsius")
+    print("3. Kelvin")
+
+    try:
+        scale_choice = int(input("Select an option (1-3): "))
+
+        if scale_choice == 1:
+            print(f"Converting {temperature} °F:")
+            celsius = fahrenheit_to_celsius(temperature)
+            print(f"Step 1: Convert Fahrenheit to Celsius: ({temperature} - 32) * 5 / 9 = {celsius:.2f} °C")
+            kelvin = fahrenheit_to_kelvin(temperature)
+            print(f"Step 2: Convert Celsius to Kelvin: {celsius:.2f} + 273.15 = {kelvin:.2f} K")
+            print(f"Result: {temperature} °F = {celsius:.2f} °C = {kelvin:.2f} K")
+        elif scale_choice == 2:
+            print(f"Converting {temperature} °C:")
+            fahrenheit = celsius_to_fahrenheit(temperature)
+            print(f"Step 1: Convert Celsius to Fahrenheit: ({temperature} * 9 / 5) + 32 = {fahrenheit:.2f} °F")
+            kelvin = celsius_to_kelvin(temperature)
+            print(f"Step 2: Convert Celsius to Kelvin: {temperature} + 273.15 = {kelvin:.2f} K")
+            print(f"Result: {temperature} °C = {fahrenheit:.2f} °F = {kelvin:.2f} K")
+        elif scale_choice == 3:
+            print(f"Converting {temperature} K:")
+            celsius = kelvin_to_celsius(temperature)
+            print(f"Step 1: Convert Kelvin to Celsius: {temperature} - 273.15 = {celsius:.2f} °C")
+            fahrenheit = kelvin_to_fahrenheit(temperature)
+            print(f"Step 2: Convert Celsius to Fahrenheit: ({celsius:.2f} * 9 / 5) + 32 = {fahrenheit:.2f} °F")
+            print(f"Result: {temperature} K = {celsius:.2f} °C = {fahrenheit:.2f} °F")
+        else:
+            print("Invalid choice. Please select a valid option.")
+    except ValueError:
+        print("Error: Please enter valid numeric values.")
+
+if __name__ == "__main__":
+    main()
