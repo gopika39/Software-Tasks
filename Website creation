@@ -1,0 +1,24 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+url = 'https://www.example.com/products'
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'html.parser')
+product_names = []
+product_prices = []
+product_ratings = []
+products = soup.find_all('div', class_='product-class') 
+for product in products:
+    name = product.find('h2', class_='product-name').text.strip()  
+    product_names.append(name)
+    price = product.find('span', class_='product-price').text.strip()  
+    product_prices.append(price)
+    rating = product.find('span', class_='product-rating').text.strip()  
+    product_ratings.append(rating)
+df = pd.DataFrame({
+    'Product Name': product_names,
+    'Price': product_prices,
+    'Rating': product_ratings
+})
+df.to_csv('product_data.csv', index=False)
+print("Data extraction complete and saved to 'product_data.csv'.")
